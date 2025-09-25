@@ -27,7 +27,7 @@ public class ProductService {
                     .build());
         }
         productDTOS.forEach(item ->{
-            item.setQuantity(productDAO.getProductQuatityById(item.getId()));
+            item.setQuantity(productDAO.getProductQuantityById(item.getId()));
         });
         return productDTOS;
     }

@@ -15,15 +15,16 @@
 <nav class="navbar bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Bosh sahifa</a>
-        <a class="navbar-brand" href="/paymentAndDelivery">Tolov vayetkazib berish</a>
+        <a class="navbar-brand" href="/paymentAndDelivery">Tolov va yetkazib berish</a>
         <a class="navbar-brand" href="/aboutUs">Biz Haqimizda</a>
         <a class="navbar-brand" href="/news">Yangiliklar</a>
         <a class="navbar-brand" href="/contacts">Bizning Kontaktlar</a>
+        <a class="navbar-brand" href="/outcomes">Chiqim</a>
         <a class="navbar-brand" href="/login">Login</a>
         <a class="navbar-brand" href="/register">Register</a>
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Mahsulotlarni qidirish..." aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Qidirish</button>
+            <button class="btn btn-success" type="submit">Qidirish</button>
         </form>
     </div>
 </nav>

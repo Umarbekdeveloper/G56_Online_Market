@@ -38,20 +38,47 @@ public class ProductDAO {
         }
     }
 
-    public int getProductQuatityById(int id) {
-        EntityManager productEntityManager = JpaConfig.getEntityManagerFactory().createEntityManager();
+    public int getProductQuantityById(int id) {
+        EntityManager em = JpaConfig.getEntityManagerFactory().createEntityManager();
         try {
-            productEntityManager.getTransaction().begin();
-            Query query = productEntityManager.createNativeQuery("select  sum(i.quntity) - sum(o.quntity) from income i join outcome o on i.product_id = o.product_id where i.product_id = " + id);
+            Query query = em.createNativeQuery(
+                    "select coalesce(sum(i.quantity),0) - coalesce(sum(o.quantity),0) " +
+                            "from income i " +
+                            "left join outcome o on i.product_id = o.product_id " +
+                            "where i.product_id = ?1"
+            );
+            query.setParameter(1, id); // bu yerda ordinal parameter ishlatyapmiz
+
             Object singleResult = query.getSingleResult();
-            productEntityManager.getTransaction().commit();
-            return Integer.parseInt(singleResult.toString());
-        } catch (Exception ex) {
-            productEntityManager.getTransaction().rollback();
-            throw ex;
+            return singleResult != null ? ((Number) singleResult).intValue() : 0;
+        } finally {
+            em.close();
         }
-        finally {
-            productEntityManager.close();
+    }
+    public uz.pdp.g56_online_market.entities.Products findById(Long id) {
+        EntityManager em = JpaConfig.getEntityManagerFactory().createEntityManager();
+        try {
+            return em.find(uz.pdp.g56_online_market.entities.Products.class, id);
+        } finally {
+            em.close();
         }
     }
 }
+
+
+//    public int getProductQuatityById(int id) {
+//        EntityManager productEntityManager = JpaConfig.getEntityManagerFactory().createEntityManager();
+//        try {
+//            productEntityManager.getTransaction().begin();
+//            Query query = productEntityManager.createNativeQuery("select  sum(i.quantity) - sum(o.quantity) from income i join outcome o on i.product_id = o.product_id where i.product_id = " + id);
+//            Object singleResult = query.getSingleResult();
+//            productEntityManager.getTransaction().commit();
+//            return Integer.parseInt(singleResult.toString());
+//        } catch (Exception ex) {
+//            productEntityManager.getTransaction().rollback();
+//            throw ex;
+//        }
+//        finally {
+//            productEntityManager.close();
+//        }
+//    }
