@@ -6,37 +6,28 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "outcome")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Builder
+@Data                 // Getter, Setter, toString, equals, hashCode
+@Builder              // Builder pattern
+@NoArgsConstructor     // Default constructor
+@AllArgsConstructor    // All args constructor
 public class Outcome {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    // Qaysi mahsulot uchun chiqim qilindi
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Products product;
-
-    // Miqdor (nechta tovar chiqim qilindi)
     @Column(nullable = false)
     private Integer quantity;
 
-    // Summasi
     @Column(nullable = false)
-    private Double amount;
+    private Double amount;          // yangi maydon
 
-    // Chiqim sanasi
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(length = 500)
+    private String description;     // yangi maydon
 
-    // Qo‘shimcha izoh
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Products product;
 }
-

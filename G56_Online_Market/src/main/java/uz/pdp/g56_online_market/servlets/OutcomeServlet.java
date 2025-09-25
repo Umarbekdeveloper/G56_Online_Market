@@ -7,12 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import uz.pdp.g56_online_market.daos.ProductDAO;
 import uz.pdp.g56_online_market.entities.Outcome;
+import uz.pdp.g56_online_market.entities.Products;
 import uz.pdp.g56_online_market.services.OutcomeService;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/outcome")
+@WebServlet("/outcomes")
 public class OutcomeServlet extends HttpServlet {
     private final OutcomeService outcomeService = new OutcomeService();
     private final ProductDAO productDAO = new ProductDAO();
@@ -38,7 +39,6 @@ public class OutcomeServlet extends HttpServlet {
         for (Outcome outcome : outcomes) {
             resp.getWriter().println("<tr>");
             resp.getWriter().println("<td>" + outcome.getId() + "</td>");
-            resp.getWriter().println("<td>" + outcome.getCreatedAt() + "</td>");
             resp.getWriter().println("<td>" + (outcome.getProduct() != null ? outcome.getProduct().getName() : "-") + "</td>");
             resp.getWriter().println("<td>" + outcome.getAmount() + "</td>");
             resp.getWriter().println("<td><a href='/outcomes/delete?id=" + outcome.getId() + "'>❌ Delete</a></td>");
@@ -66,8 +66,8 @@ public class OutcomeServlet extends HttpServlet {
         String description = req.getParameter("description");
 
         // ⚡ Bazadan product topamiz
-        uz.pdp.g56_online_market.entities.Products product =
-                new uz.pdp.g56_online_market.daos.ProductDAO().findById(productId);
+        Products product =
+                new ProductDAO().findById(productId);
 
         Outcome outcome = Outcome.builder()
                 .product(product) // ⚡ majburiy field
@@ -78,7 +78,7 @@ public class OutcomeServlet extends HttpServlet {
 
         outcomeService.addOutcome(outcome);
 
-        resp.sendRedirect("/outcome");
+        resp.sendRedirect("/outcomes");
     }
 
 }

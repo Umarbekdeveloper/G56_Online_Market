@@ -82,14 +82,20 @@ public class OutcomeDAO {
 //    }
 
     public List<Outcome> findAll() {
-            EntityManager em = JpaConfig.getEntityManagerFactory().createEntityManager();
-            try {
-                return em.createQuery("select o from Outcome o", Outcome.class)
-                        .getResultList();
-            } finally {
-                em.close();
-            }
+        EntityManager em = JpaConfig.getEntityManagerFactory().createEntityManager();
+        try {
+            System.out.println(">>> DEBUG: Outcome entity manager ochildi");
+            List<Outcome> list = em.createQuery("select o from Outcome o", Outcome.class)
+                    .getResultList();
+            System.out.println(">>> DEBUG: Outcomes count = " + list.size());
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            em.close();
         }
+    }
 
 
 }

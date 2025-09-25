@@ -19,7 +19,7 @@
         <a class="navbar-brand" href="/aboutUs">Biz Haqimizda</a>
         <a class="navbar-brand" href="/news">Yangiliklar</a>
         <a class="navbar-brand" href="/contacts">Bizning Kontaktlar</a>
-        <a class="navbar-brand" href="/outcome">Chiqim</a>
+        <a class="navbar-brand" href="/outcomes">Chiqim</a>
         <a class="navbar-brand" href="/login">Login</a>
         <a class="navbar-brand" href="/register">Register</a>
         <form class="d-flex" role="search">
