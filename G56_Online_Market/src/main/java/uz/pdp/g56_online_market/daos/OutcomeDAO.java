@@ -2,7 +2,6 @@ package uz.pdp.g56_online_market.daos;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.TypedQuery;
 import uz.pdp.g56_online_market.config.JpaConfig;
 import uz.pdp.g56_online_market.entities.Outcome;
 

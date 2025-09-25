@@ -27,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="out" items="${outcomes}">
+                <c:forEach var="out" items="${outcome}">
                     <tr>
                         <td>${out.id}</td>
                         <td>${out.quantity}</td>
@@ -35,7 +35,7 @@
                         <td>${out.description}</td>
                         <td>${out.createdAt}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/outcomes/delete?id=${out.id}"
+                            <a href="${pageContext.request.contextPath}/outcome/delete?id=${out.id}"
                                class="btn btn-sm btn-danger">
                                 ❌ Delete
                             </a>
@@ -51,7 +51,7 @@
     <div class="card mt-4 shadow-lg rounded-3">
         <div class="card-body">
             <h3 class="mb-3">➕ Yangi Outcome qo‘shish</h3>
-            <form method="post" action="${pageContext.request.contextPath}/outcomes">
+            <form method="post" action="${pageContext.request.contextPath}/outcome">
                 <div class="mb-3">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" id="quantity" name="quantity" class="form-control" required>

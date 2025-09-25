@@ -10,10 +10,9 @@ import uz.pdp.g56_online_market.entities.Outcome;
 import uz.pdp.g56_online_market.services.OutcomeService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/outcomes")
+@WebServlet("/outcome")
 public class OutcomeServlet extends HttpServlet {
     private final OutcomeService outcomeService = new OutcomeService();
     private final ProductDAO productDAO = new ProductDAO();
@@ -79,7 +78,7 @@ public class OutcomeServlet extends HttpServlet {
 
         outcomeService.addOutcome(outcome);
 
-        resp.sendRedirect("/outcomes");
+        resp.sendRedirect("/outcome");
     }
 
 }
